@@ -1,4 +1,4 @@
-import { supabase } from '~/utils/supabase'
+import { supabase } from '~~/server/utils/supabase'
 
 export default defineEventHandler(async (event) => {
   const { data: border_radius, error } = await supabase

@@ -11,6 +11,8 @@ export default defineEventHandler(async (event) => {
       radius: body.radius
     })
     .eq('id', body.id)
+    .select()
+    .single()
 
   return style
 })

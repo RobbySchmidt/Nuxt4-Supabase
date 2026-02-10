@@ -14,23 +14,28 @@
 
   const { primary_color, secondary_color, radius } = storeToRefs(store)
 
-  if (process.client) {
-    watchEffect(() => {
-      const root = document.documentElement
+  onMounted(() => {
+    const root = document.documentElement
 
-      if (primary_color.value) {
-        root.style.setProperty('--primary', primary_color.value.color)
-      }
+    watch(
+      () => [primary_color.value, secondary_color.value, radius.value],
+      () => {
+        if (primary_color.value) {
+          root.style.setProperty('--primary', primary_color.value.color)
+        }
 
-      if (secondary_color.value) {
-        root.style.setProperty('--secondary', secondary_color.value.color)
-      }
+        if (secondary_color.value) {
+          root.style.setProperty('--secondary', secondary_color.value.color)
+        }
 
-      if (radius.value !== null) {
-        root.style.setProperty('--radius', `${radius.value.value}px`)
-      }
-    })
-  }
+        if (radius.value) {
+          root.style.setProperty('--radius', `${radius.value.value}px`)
+        }
+      },
+      { immediate: true }
+    )
+  })
+
 
   await Promise.all([
     store.getImages(),

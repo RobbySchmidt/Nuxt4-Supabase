@@ -1,4 +1,4 @@
-import type { Category } from "@/types/style"
+import type { Category } from "@/types/items"
 
 export function categoryUi(c: Category) {
   if (c === "nature") return { cls: "bg-green-500 text-white" }

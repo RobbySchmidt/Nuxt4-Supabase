@@ -6,7 +6,7 @@
           v-if="content.image" 
           :src="content.image" 
           alt=""
-          class="rounded overflow-hidden md:order-last">
+          class="rounded overflow-hidden md:order-last block w-full aspect-5/3 object-cover">
         <div
           v-if="content.text"
           class="text-lg" 

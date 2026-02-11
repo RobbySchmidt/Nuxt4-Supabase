@@ -9,7 +9,8 @@
         <img 
           v-if="data.content.image"
           :src="data.content.image"
-          :alt="data.title">
+          :alt="data.title"
+          class="block w-full aspect-5/3 object-cover">
         <h2 
           class="py-1 text-primary text-lg"
           v-if="data.title">

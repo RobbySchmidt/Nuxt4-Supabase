@@ -4,6 +4,7 @@ export default defineEventHandler(async (event) => {
   const { data: pages, error } = await supabase
     .from('pages')
     .select('*')
+    .order('sort', { ascending: true })
 
   if (error) {
     throw createError({

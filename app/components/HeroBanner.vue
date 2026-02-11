@@ -4,8 +4,8 @@
       <div class="lg:w-8/12 mx-auto">
         <h1 
           class="font-medium text-f-5xl md:text-f-6xl text-white whitespace-pre-line"
-          v-if="title">
-          {{ title }}
+          v-if="content">
+          {{ content }}
         </h1>
       </div>
     </div>
@@ -14,6 +14,6 @@
 
 <script setup>
   defineProps({
-    title: String
+    content: Object
   })
 </script>

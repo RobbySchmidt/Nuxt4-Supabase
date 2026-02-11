@@ -3,8 +3,8 @@
     <div class="lg:w-8/12 mx-auto">
       <h2 
         class="text-f-4xl text-primary font-bold"
-        v-if="headline">
-        {{ headline }}
+        v-if="content">
+        {{ content }}
       </h2>
     </div>
   </div>
@@ -12,7 +12,7 @@
 
 <script setup>
   const props = defineProps({
-    headline: String
+    content: Object
   })
 </script>
 

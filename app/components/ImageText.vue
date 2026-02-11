@@ -3,14 +3,14 @@
     <div class="container mx-auto px-4">
       <div class="lg:w-8/12 mx-auto grid md:grid-cols-2 gap-8 items-center">
         <img
-          v-if="data.image" 
-          :src="data.image" 
+          v-if="content.image" 
+          :src="content.image" 
           alt=""
           class="rounded overflow-hidden md:order-last">
         <div
-          v-if="data.text"
+          v-if="content.text"
           class="text-lg" 
-          v-html="data.text">
+          v-html="content.text">
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
 
 <script setup>
   const props = defineProps({
-    data: Object
+    content: Object
   })
 </script>
 

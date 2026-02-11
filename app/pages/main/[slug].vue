@@ -9,10 +9,10 @@
 
   const { params } = useRoute()
 
-  const { getImageById } = useStore()
+  const { getImageBySlug } = useStore()
   
   const data = computed(() => {
-    return getImageById(params.id)
+    return getImageBySlug(params.slug)
   })
 </script>
 

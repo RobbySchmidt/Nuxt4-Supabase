@@ -12,8 +12,8 @@
         {{ data.title }}
       </h2>
       <img
-        v-if="data.image" 
-        :src="data.image" 
+        v-if="data.content.image" 
+        :src="data.content.image" 
         :alt="data.title"
         class="block w-full">
       <div

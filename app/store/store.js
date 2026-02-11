@@ -14,12 +14,12 @@ export const useStore = defineStore('store', {
   }),
 
   getters: {
-    getImageById: (state) => {
-      return (id) => state.images.find((img) => img.id === id)
+    getImageBySlug: (state) => {
+      return (slug) => state.images.find((img) => img.slug === slug)
     },
 
-    getPageByName: (state) => {
-      return (name) => state.pages.find((p) => p.slug === name)
+    getPageBySlug: (state) => {
+      return (slug) => state.pages.find((p) => p.slug === slug)
     },
   },
 

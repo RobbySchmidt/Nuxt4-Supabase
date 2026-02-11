@@ -1,4 +1,4 @@
-export type Category = "nature" | "science" | "comedy"
+export type Category = "nature" | "science" | "music"
 
 export type Categories = {
   id: string,

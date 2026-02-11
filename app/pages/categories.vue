@@ -27,22 +27,31 @@
         class="space-x-2">
         <span>{{ item.item }}</span>
         <ul class="flex gap-2 pl-2">
-          <li>
+          <li class="flex items-center gap-2">
             categories:
-            <span 
-              v-if="item.categories">
-              {{ item.categories.map(cat => cat.category.category).join(', ') || 'no categories found' }}
-            </span>
+            <template v-if="item.categories.length > 0">
+              <span 
+                v-if="item.categories"
+                v-for="cat in item.categories"
+                class="px-2 py-1 rounded border text-xs"
+                :class="categoryUi(cat.category.category).cls">
+                {{ cat.category.category }}
+              </span>
+            </template>
+            <template v-else>
+              <span class="text-xs opacity-60">
+                no categories found
+              </span>
+            </template>
           </li>
         </ul>
       </li>
     </TransitionGroup>
-
-    <pre>{{ items }}</pre>
   </div>
 </template>
 
 <script setup>
+  import { categoryUi } from "@/lib/ui"
   const { data: items } = await useFetch('/api/items') 
   const { data: categories } = await useFetch('/api/categories')
 

@@ -3,7 +3,7 @@
     "title": "Main Page",
     "slug": "main",
     "sort": 1,
-    "content": [
+    "components": [
       {
         "sort": 1,
         "type": {

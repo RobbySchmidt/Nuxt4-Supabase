@@ -1,8 +1,8 @@
 <template>
   <div class="pb-f-24 space-y-f-24">
     <component
-      v-if="page.content"
-      v-for="block in page.content"
+      v-if="page.components"
+      v-for="block in page.components"
       :key="block.sort"
       :is="components[block.type?.type]"
       :content="block"

@@ -40,6 +40,7 @@
   await Promise.all([
     store.getImages(),
     store.getGeneral(),
+    store.getJson(),
     store.getPrimaryColors(),
     store.getSecondaryColors(),
     store.getBorderRadius(),

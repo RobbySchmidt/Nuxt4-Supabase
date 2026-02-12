@@ -35,15 +35,15 @@ export const useStore = defineStore('store', {
  
     },
 
-    // async getPages() {
-    //   try {
-    //     const pages = await $fetch('/api/pages')
+    async getJson() {
+      try {
+        const json = await $fetch('/api/json')
 
-    //     this.pages = pages
+        this.pages = json.pages
 
-    //   } catch (e) {}
+      } catch (e) {}
  
-    // },
+    },
 
     async getGeneral() {
       const general = await $fetch('/api/general')

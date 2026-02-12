@@ -2,8 +2,8 @@
   <div class="container mx-auto px-4">
     <div class="lg:w-8/12 mx-auto">
       <div class="text-lg max-w-2xl"
-        v-if="content.content.text" 
-        v-html="content.content.text">
+        v-if="content.text" 
+        v-html="content.text">
       </div>
     </div>
   </div>

@@ -4,8 +4,8 @@
       <div class="lg:w-8/12 mx-auto">
         <h1 
           class="font-medium text-f-5xl md:text-f-6xl text-white whitespace-pre-line"
-          v-if="content.content.headline">
-          {{ content.content.headline }}
+          v-if="content.headline">
+          {{ content.headline }}
         </h1>
       </div>
     </div>

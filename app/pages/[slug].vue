@@ -5,7 +5,7 @@
       v-for="block in page.components"
       :key="block.sort"
       :is="components[block.type?.type]"
-      :content="block"
+      :content="block.content"
       :slug="page.slug"
     />
   </div>

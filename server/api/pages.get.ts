@@ -5,6 +5,7 @@ export default defineEventHandler(async (event) => {
     .from('pages')
     .select('*, content(*, type(type))')
     .order('sort', { ascending: true })
+    .order('sort', { foreignTable: 'content', ascending: true })
 
   if (error) {
     throw createError({

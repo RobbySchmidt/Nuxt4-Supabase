@@ -1,8 +1,8 @@
 <template>
   <div class="pb-f-24 space-y-f-24">
     <component
-      v-if="sortedBlocks"
-      v-for="block in sortedBlocks"
+      v-if="page.content"
+      v-for="block in page.content"
       :key="block.sort"
       :is="components[block.type?.type]"
       :content="block"
@@ -37,12 +37,6 @@
     card: Card,
     categories: Categories
   }
-
-  const sortedBlocks = computed(() => {
-    if (!page.value?.content) return []
-
-    return [...page.value.content].sort((a, b) => a.sort - b.sort)
-  })
 </script>
 
 <style scoped>

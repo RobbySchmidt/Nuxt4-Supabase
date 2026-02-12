@@ -4,8 +4,8 @@
       v-if="sortedBlocks"
       v-for="block in sortedBlocks"
       :key="block.sort"
-      :is="components[block.type]"
-      :content="block.content"
+      :is="components[block.type?.type]"
+      :content="block"
       :slug="page.slug"
     />
   </div>

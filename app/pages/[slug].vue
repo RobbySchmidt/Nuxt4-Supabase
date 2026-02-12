@@ -4,7 +4,7 @@
       v-if="page.components"
       v-for="block in page.components"
       :key="block.sort"
-      :is="components[block.type?.type]"
+      :is="components[block.type]"
       :content="block.content"
       :slug="page.slug"
     />

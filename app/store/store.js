@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
+import pages from '@/pages.json'
 
 export const useStore = defineStore('store', {
   state: () => ({
     images: [],
-    pages: [],
+    pages: pages,
     general: [],
     primary_colors: [],
     primary_color: null,
@@ -34,15 +35,15 @@ export const useStore = defineStore('store', {
  
     },
 
-    async getPages() {
-      try {
-        const pages = await $fetch('/api/pages')
+    // async getPages() {
+    //   try {
+    //     const pages = await $fetch('/api/pages')
 
-        this.pages = pages
+    //     this.pages = pages
 
-      } catch (e) {}
+    //   } catch (e) {}
  
-    },
+    // },
 
     async getGeneral() {
       const general = await $fetch('/api/general')

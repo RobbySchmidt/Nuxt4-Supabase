@@ -1,0 +1,53 @@
+[
+  {
+    "title": "Main Page",
+    "slug": "main",
+    "sort": 1,
+    "content": [
+      {
+        "sort": 1,
+        "type": {
+          "type": "herobanner"
+        },
+        "content": {
+          "headline": "Herobanner\nHeadline"
+        }
+      },
+      {
+        "sort": 2,
+        "type": {
+          "type": "headline"
+        },
+        "content": {
+          "headline": "Main Page Headline"
+        }
+      },
+      {
+        "sort": 3,
+        "type": {
+          "type": "text"
+        },
+        "content": {
+          "text": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<p/>"
+        }
+      },
+      {
+        "sort": 4,
+        "type": {
+          "type": "imageText"
+        },
+        "content": {
+          "text": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+          "image": "https://picsum.photos/1920/1080?random=3"
+        }
+      },
+      {
+        "sort": 5,
+        "type": {
+          "type": "card"
+        },
+        "content": null
+      }
+    ]
+  }
+]

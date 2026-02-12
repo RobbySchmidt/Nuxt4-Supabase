@@ -3,7 +3,7 @@ import { supabase } from '~~/server/utils/supabase'
 export default defineEventHandler(async (event) => {
   const { data: pages, error } = await supabase
     .from('pages')
-    .select('*')
+    .select('*, content(*, type(type))')
     .order('sort', { ascending: true })
 
   if (error) {

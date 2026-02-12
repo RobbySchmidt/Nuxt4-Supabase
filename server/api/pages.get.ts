@@ -3,9 +3,9 @@ import { supabase } from '~~/server/utils/supabase'
 export default defineEventHandler(async (event) => {
   const { data: pages, error } = await supabase
     .from('pages')
-    .select('*, content(*, type(type))')
+    .select('*, components(*, type(type))')
     .order('sort', { ascending: true })
-    .order('sort', { foreignTable: 'content', ascending: true })
+    .order('sort', { foreignTable: 'components', ascending: true })
 
   if (error) {
     throw createError({

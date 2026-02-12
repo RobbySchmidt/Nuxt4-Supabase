@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import pages from '@/data/pages.json'
 
 export const useStore = defineStore('store', {
   state: () => ({

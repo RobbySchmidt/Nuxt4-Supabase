@@ -6,7 +6,6 @@
       :key="block.sort"
       :is="components[block.type?.type]"
       :content="block.content"
-      :slug="page.slug"
     />
   </div>
 </template>

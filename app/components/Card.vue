@@ -4,7 +4,7 @@
       <NuxtLink
         v-if="images"
         v-for="data in images"
-        :to="`${slug}/${data.slug}`"
+        :to="`${content.slug}/${data.slug}`"
         class="rounded overflow-hidden text-center shadow hover:scale-105 duration-300 ease-in-out">
         <img 
           v-if="data.content.image"
@@ -23,7 +23,7 @@
 
 <script setup>
   const props = defineProps({
-    slug: String
+    content: Object
   })
 
   import { useStore } from '~/store/store'

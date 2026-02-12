@@ -4,7 +4,7 @@ import pages from '@/data/pages.json'
 export const useStore = defineStore('store', {
   state: () => ({
     images: [],
-    pages: pages,
+    pages: [],
     general: [],
     primary_colors: [],
     primary_color: null,

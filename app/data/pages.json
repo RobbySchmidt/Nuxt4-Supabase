@@ -39,6 +39,32 @@
         "content": {
           "slug": "main"
         }
+      },
+      {
+        "sort": 6,
+        "type": "imageSlider",
+        "content": [
+          {
+            "image": "https://picsum.photos/1920/1080?random=4",
+            "title": "Image-1"
+          },
+          {
+            "image": "https://picsum.photos/1920/1080?random=5",
+            "title": "Image-2"
+          },
+          {
+            "image": "https://picsum.photos/1920/1080?random=6",
+            "title": "Image-3"
+          },
+          {
+            "image": "https://picsum.photos/1920/1080?random=7",
+            "title": "Image-4"
+          },
+          {
+            "image": "https://picsum.photos/1920/1080?random=8",
+            "title": "Image-5"
+          }
+        ]
       }
     ]
   }

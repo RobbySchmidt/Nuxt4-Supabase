@@ -87,6 +87,21 @@ export const useStore = defineStore('store', {
       } catch (e) {
         console.error('Update failed:', e)
       }
+    },
+
+    async updateComponent(component) {
+      const updated = await $fetch('/api/components', {
+        method: 'PATCH',
+        body: {
+          id: component.id,
+          content: component.content,
+          sort: component.sort
+        }
+      })
+
+      const page = this.pages.find(p => p.id === component.page)
+      const index = page.components.findIndex(c => c.id === component.id)
+      page.components[index] = updated
     }
   }
 });

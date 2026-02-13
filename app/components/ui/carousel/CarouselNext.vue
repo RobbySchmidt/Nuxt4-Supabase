@@ -34,7 +34,7 @@ const { orientation, canScrollNext, scrollNext } = useCarousel()
     @click="scrollNext"
   >
     <slot>
-      <MoveRight class="size-6 text-primary"/>
+      <MoveRight class="size-7 text-primary"/>
       <span class="sr-only">Next Slide</span>
     </slot>
   </Button>

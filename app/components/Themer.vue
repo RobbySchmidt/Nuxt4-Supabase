@@ -150,14 +150,23 @@
                 :key="index"
                 class="border rounded p-3 space-y-2"
               >
-                <Label>Image URL</Label>
-                <Input v-model="item.image" />
-
+                <!-- TITLE (always present) -->
                 <Label>Title</Label>
                 <Input v-model="item.title" />
+
+                <!-- TEXT ITEM -->
+                <template v-if="'text' in item">
+                  <Label>Text</Label>
+                  <Textarea v-model="item.text" />
+                </template>
+
+                <!-- IMAGE ITEM -->
+                <template v-else-if="'image' in item">
+                  <Label>Image URL</Label>
+                  <Input v-model="item.image" />
+                </template>
               </div>
             </template>
-
           </div>
 
           <DialogFooter>

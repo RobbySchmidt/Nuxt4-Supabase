@@ -22,21 +22,23 @@
   })
 
   const HeroBanner = resolveComponent('HeroBanner')
-  const Headline = resolveComponent('Headline')
+  const TitleComponent = resolveComponent('TitleComponent')
   const Text = resolveComponent('Text')
   const ImageText = resolveComponent('ImageText')
   const Card = resolveComponent('Card')
   const Categories = resolveComponent('Categories')
   const ImageSlider = resolveComponent('ImageSlider')
+  const AccordionComponent = resolveComponent('AccordionComponent')
 
   const components = {
     herobanner: HeroBanner,
-    headline: Headline,
+    title: TitleComponent,
     text: Text,
     imageText: ImageText,
     card: Card,
     categories: Categories,
-    imageSlider: ImageSlider
+    imageSlider: ImageSlider,
+    accordion: AccordionComponent,
   }
 </script>
 

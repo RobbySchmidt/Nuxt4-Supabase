@@ -44,6 +44,7 @@
     store.getPrimaryColors(),
     store.getSecondaryColors(),
     store.getBorderRadius(),
+    store.getTasks(),
   ])
 </script>
 

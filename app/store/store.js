@@ -10,7 +10,9 @@ export const useStore = defineStore('store', {
     secondary_colors: [],
     secondary_color: null,
     border_radius: [],
-    radius: null
+    radius: null,
+    task: '',
+    tasks: []
   }),
 
   getters: {
@@ -102,6 +104,69 @@ export const useStore = defineStore('store', {
       const page = this.pages.find(p => p.id === component.page)
       const index = page.components.findIndex(c => c.id === component.id)
       page.components[index] = updated
+    },
+
+    async getTasks() {
+      const tasks = await $fetch('/api/tasks/get')
+
+      this.tasks = tasks
+    },
+
+    async addTask() {
+      if(!this.task) return
+      
+      try {
+        const task = await $fetch('/api/tasks/post', {
+          method: 'PATCH',
+          body: {
+            task: this.task,
+          }
+        })
+
+        this.task = ''
+
+        await this.getTasks()
+
+        console.log('New task added:', task)
+      } catch (e) {
+        console.error('adding task failed:', e)
+      }
+    },
+
+    async checkTask(task) {
+      task.done = !task.done
+
+      try {
+        const updated = await $fetch('/api/tasks/patch', {
+          method: 'PATCH',
+          body: {
+            id: task.id,
+            done: task.done
+          }
+        })
+
+        console.log('Updated task:', updated)
+      } catch (e) {
+        console.error('Update failed:', e)
+      }
+    },
+
+    async deleteTask(id) {
+
+      try {
+        const deleted = await $fetch('/api/tasks/delete', {
+          method: 'DELETE',
+          body: {
+            id: id,
+          }
+        })
+
+        await this.getTasks()
+
+        console.log('Task deleted:', deleted)
+      } catch (e) {
+        console.error('falied to delete task:', e)
+      }
     }
   }
 });

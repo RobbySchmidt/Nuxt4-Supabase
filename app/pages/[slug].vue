@@ -29,6 +29,7 @@
   const Categories = resolveComponent('Categories')
   const ImageSlider = resolveComponent('ImageSlider')
   const AccordionComponent = resolveComponent('AccordionComponent')
+  const Tasks = resolveComponent('Tasks')
 
   const components = {
     herobanner: HeroBanner,
@@ -39,6 +40,7 @@
     categories: Categories,
     imageSlider: ImageSlider,
     accordion: AccordionComponent,
+    tasks: Tasks,
   }
 </script>
 

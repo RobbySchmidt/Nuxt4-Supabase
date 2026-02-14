@@ -18,8 +18,12 @@
             {{ task.task }}
           </span>
           <div class="flex items-center gap-1">
-            <CircleCheck @click="store.checkTask(task)"/>
-            <CircleX @click="store.deleteTask(task.id)"/>
+            <CircleCheck 
+              @click="store.checkTask(task)"
+              :class="task.done ? 'text-green-500' : 'text-yellow-500'"/>
+            <CircleX 
+              @click="store.deleteTask(task.id)"
+              class="text-red-500"/>
           </div>
         </li>
       </ul>

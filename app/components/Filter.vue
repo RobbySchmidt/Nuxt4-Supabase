@@ -19,8 +19,11 @@
           v-if="filteredItems"
           v-for="item in filteredItems"
           :key="item.id"
-          class="px-4 py-4 border-b last:border-b-0">
-          {{ item.item }}
+          class="px-4 py-4 border-b last:border-b-0 flex gap-2 justify-between">
+          <span>{{ item.item }}</span>
+          <span>
+            {{ item.categories.map(i => i.name).join(', ') }}
+          </span>
         </li>
       </ul>
     </div>

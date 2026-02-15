@@ -28,6 +28,7 @@
   const Card = resolveComponent('Card')
   const Categories = resolveComponent('Categories')
   const ImageSlider = resolveComponent('ImageSlider')
+  const Filter = resolveComponent('Filter')
 
   const components = {
     herobanner: HeroBanner,
@@ -36,7 +37,8 @@
     imageText: ImageText,
     card: Card,
     categories: Categories,
-    imageSlider: ImageSlider
+    imageSlider: ImageSlider,
+    filter: Filter,
   }
 </script>
 

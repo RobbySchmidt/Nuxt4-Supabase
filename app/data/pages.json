@@ -67,5 +67,17 @@
         ]
       }
     ]
+  },
+  {
+    "slug": "filter",
+    "sort": 2,
+    "title": "Filter Page",
+    "components": [
+      {
+        "sort": 1,
+        "type": "filter",
+        "content": null
+      }
+    ]
   }
 ]

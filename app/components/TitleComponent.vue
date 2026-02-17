@@ -3,8 +3,8 @@
     <div class="lg:w-8/12 mx-auto">
       <h2 
         class="text-f-4xl text-primary font-bold"
-        v-if="content.headline">
-        {{ content.headline }}
+        v-if="content.title">
+        {{ content.title }}
       </h2>
     </div>
   </div>

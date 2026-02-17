@@ -12,7 +12,7 @@
           <CarouselItem 
             v-for="(image, index) in content" 
             :key="index"
-            class="md:basis-1/2 xl:basis-1/3">
+            class="md:basis-1/2">
             <div class="rounded overflow-hidden" >
               <img 
                 :src="image.image" 

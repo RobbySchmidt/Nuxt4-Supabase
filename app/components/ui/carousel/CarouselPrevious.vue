@@ -34,7 +34,7 @@ const { orientation, canScrollPrev, scrollPrev } = useCarousel()
     @click="scrollPrev"
   >
     <slot>
-      <MoveLeft class="size-6 text-primary"/>
+      <MoveLeft class="size-7 text-primary"/>
       <span class="sr-only">Previous Slide</span>
     </slot>
   </Button>

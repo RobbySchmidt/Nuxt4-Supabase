@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-
+import { toast } from 'vue-sonner'
 export const useStore = defineStore('store', {
   state: () => ({
     images: [],
@@ -100,26 +100,20 @@ export const useStore = defineStore('store', {
     },
 
     async updateStyle() {
-      try {
-        const style = await $fetch('/api/data', {
-          method: 'POST',
-          body: {
-            action: 'update',
-            table: 'general',
-            single: true,
-            values: {
-              primary_color: this.primary_color.id,
-              secondary_color: this.secondary_color.id,
-              radius: this.radius.id,
-            },
-            filters: [{ column: 'id', operator: 'eq', value: this.general.id }],
+      return await $fetch('/api/data', {
+        method: 'POST',
+        body: {
+          action: 'update',
+          table: 'general',
+          single: true,
+          values: {
+            primary_color: this.primary_color.id,
+            secondary_color: this.secondary_color.id,
+            radius: this.radius.id,
           },
-        })
-
-        console.log('Updated general:', style)
-      } catch (e) {
-        console.error('Update failed:', e)
-      }
+          filters: [{ column: 'id', operator: 'eq', value: this.general.id }],
+        },
+      })
     },
 
     async getTasks() {
@@ -147,8 +141,9 @@ export const useStore = defineStore('store', {
 
         await this.getTasks()
 
-        console.log('New task added:', task)
+        toast.success('New task added')
       } catch (e) {
+        toast.error('adding task failed')
         console.error('adding task failed:', e)
       }
     },
@@ -168,8 +163,9 @@ export const useStore = defineStore('store', {
           },
         })
 
-        console.log('Updated task:', updated)
+        toast.success('Task updated')
       } catch (e) {
+        toast.error('failed to update Task')
         console.error('Update failed:', e)
       }
     },
@@ -188,8 +184,9 @@ export const useStore = defineStore('store', {
 
         await this.getTasks()
 
-        console.log('Task deleted:', deleted)
+        toast.success('Task deleted')
       } catch (e) {
+        toast.error('failed to delete Task')
         console.error('falied to delete task:', e)
       }
     }

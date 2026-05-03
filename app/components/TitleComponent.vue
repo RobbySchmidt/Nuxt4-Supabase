@@ -14,8 +14,6 @@
   const props = defineProps({
     content: Object
   })
-
-  console.log(props)
 </script>
 
 <style scoped>

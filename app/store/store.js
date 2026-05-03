@@ -91,21 +91,6 @@ export const useStore = defineStore('store', {
       }
     },
 
-    async updateComponent(component) {
-      const updated = await $fetch('/api/components', {
-        method: 'PATCH',
-        body: {
-          id: component.id,
-          content: component.content,
-          sort: component.sort
-        }
-      })
-
-      const page = this.pages.find(p => p.id === component.page)
-      const index = page.components.findIndex(c => c.id === component.id)
-      page.components[index] = updated
-    },
-
     async getTasks() {
       const tasks = await $fetch('/api/tasks/get')
 

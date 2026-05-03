@@ -52,8 +52,18 @@
 
 <script setup>
   import { categoryUi } from "@/lib/ui"
-  const { data: items } = await useFetch('/api/items') 
-  const { data: categories } = await useFetch('/api/categories')
+  const { data: items } = await useFetch('/api/data', {
+    method: 'POST',
+    body: {
+      action: 'select',
+      table: 'items',
+      select: '*, categories: join_table(category(*))',
+    },
+  })
+  const { data: categories } = await useFetch('/api/data', {
+    method: 'POST',
+    body: { action: 'select', table: 'categories', select: '*' },
+  })
 
   const selectedCategory = ref(null)
 

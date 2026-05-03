@@ -28,26 +28,49 @@ export const useStore = defineStore('store', {
   actions: {
     async getImages() {
       try {
-        const data = await $fetch('/api/data')
-
-        this.images = data
-
-      } catch (e) {}
- 
+        this.images = await $fetch('/api/data', {
+          method: 'POST',
+          body: {
+            action: 'select',
+            table: 'data',
+            select: '*',
+            order: [{ column: 'sort', ascending: true }],
+          },
+        })
+      } catch (e) {
+        console.error(e)
+      }
     },
 
     async getPages() {
       try {
-        const pages = await $fetch('/api/pages')
-
-        this.pages = pages
-
-      } catch (e) {}
- 
+        this.pages = await $fetch('/api/data', {
+          method: 'POST',
+          body: {
+            action: 'select',
+            table: 'pages',
+            select: '*, components(*, type(type))',
+            order: [
+              { column: 'sort', ascending: true },
+              { column: 'sort', ascending: true, foreignTable: 'components' },
+            ],
+          },
+        })
+      } catch (e) {
+        console.error(e)
+      }
     },
 
     async getGeneral() {
-      const general = await $fetch('/api/general')
+      const general = await $fetch('/api/data', {
+        method: 'POST',
+        body: {
+          action: 'select',
+          table: 'general',
+          select: '*, primary_color(color), secondary_color(color), radius(value)',
+          single: true,
+        },
+      })
 
       this.general = general
       this.primary_color = general.primary_color
@@ -56,33 +79,41 @@ export const useStore = defineStore('store', {
     },
 
     async getPrimaryColors() {
-      const primary_colors = await $fetch('/api/primary_colors')
-
-      this.primary_colors = primary_colors
+      this.primary_colors = await $fetch('/api/data', {
+        method: 'POST',
+        body: { action: 'select', table: 'primary_colors', select: '*' },
+      })
     },
 
     async getSecondaryColors() {
-      const secondary_colors = await $fetch('/api/secondary_colors')
-
-      this.secondary_colors = secondary_colors
+      this.secondary_colors = await $fetch('/api/data', {
+        method: 'POST',
+        body: { action: 'select', table: 'secondary_colors', select: '*' },
+      })
     },
 
     async getBorderRadius() {
-      const border_radius = await $fetch('/api/border_radius') 
-
-      this.border_radius = border_radius
+      this.border_radius = await $fetch('/api/data', {
+        method: 'POST',
+        body: { action: 'select', table: 'border_radius', select: '*' },
+      })
     },
 
     async updateStyle() {
       try {
-        const style = await $fetch('/api/style', {
-          method: 'PATCH',
+        const style = await $fetch('/api/data', {
+          method: 'POST',
           body: {
-            id: this.general.id,
-            primary_color: this.primary_color.id,
-            secondary_color: this.secondary_color.id,
-            radius: this.radius.id
-          }
+            action: 'update',
+            table: 'general',
+            single: true,
+            values: {
+              primary_color: this.primary_color.id,
+              secondary_color: this.secondary_color.id,
+              radius: this.radius.id,
+            },
+            filters: [{ column: 'id', operator: 'eq', value: this.general.id }],
+          },
         })
 
         console.log('Updated general:', style)
@@ -92,20 +123,24 @@ export const useStore = defineStore('store', {
     },
 
     async getTasks() {
-      const tasks = await $fetch('/api/tasks/get')
-
-      this.tasks = tasks
+      this.tasks = await $fetch('/api/data', {
+        method: 'POST',
+        body: { action: 'select', table: 'tasks', select: '*' },
+      })
     },
 
     async addTask() {
-      if(!this.task) return
-      
+      if (!this.task) return
+
       try {
-        const task = await $fetch('/api/tasks/post', {
-          method: 'PATCH',
+        const task = await $fetch('/api/data', {
+          method: 'POST',
           body: {
-            task: this.task,
-          }
+            action: 'insert',
+            table: 'tasks',
+            single: true,
+            values: { task: this.task },
+          },
         })
 
         this.task = ''
@@ -122,12 +157,15 @@ export const useStore = defineStore('store', {
       task.done = !task.done
 
       try {
-        const updated = await $fetch('/api/tasks/patch', {
-          method: 'PATCH',
+        const updated = await $fetch('/api/data', {
+          method: 'POST',
           body: {
-            id: task.id,
-            done: task.done
-          }
+            action: 'update',
+            table: 'tasks',
+            single: true,
+            values: { done: task.done },
+            filters: [{ column: 'id', operator: 'eq', value: task.id }],
+          },
         })
 
         console.log('Updated task:', updated)
@@ -137,13 +175,15 @@ export const useStore = defineStore('store', {
     },
 
     async deleteTask(id) {
-
       try {
-        const deleted = await $fetch('/api/tasks/delete', {
-          method: 'DELETE',
+        const deleted = await $fetch('/api/data', {
+          method: 'POST',
           body: {
-            id: id,
-          }
+            action: 'delete',
+            table: 'tasks',
+            single: true,
+            filters: [{ column: 'id', operator: 'eq', value: id }],
+          },
         })
 
         await this.getTasks()

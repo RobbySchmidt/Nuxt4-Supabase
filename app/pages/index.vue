@@ -3,11 +3,10 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import { useStore } from '~/store/store'
 import DynamicPage from '~/components/DynamicPage.vue'
 
-const { params } = useRoute()
-const { getPageBySlug } = useStore()
-
-const page = computed(() => getPageBySlug(params.slug))
+const store = useStore()
+const { homePage: page } = storeToRefs(store)
 </script>

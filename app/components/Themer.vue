@@ -1,5 +1,5 @@
 <template>
-  <Sheet>
+  <Sheet :modal="false">
     <SheetTrigger as-child>
       <Button 
         variant="secondary">
@@ -80,23 +80,29 @@
       </Select>
       
       <SheetFooter>
-        <SheetClose as-child>
-          <Button
-            @click="store.updateStyle">
-            save new style
-          </Button>
-        </SheetClose>
+        <Button @click="saveStyle">
+          save new style
+        </Button>
       </SheetFooter>
     </SheetContent>
   </Sheet>
 </template>
 
 <script setup>
-  import { Settings2 } from 'lucide-vue-next'
+  import { Settings2, Pencil } from 'lucide-vue-next'
+  import { toast } from 'vue-sonner'
   import { useStore } from '~/store/store'
   import { storeToRefs } from 'pinia'
 
   const store = useStore()
-
   const { primary_color, secondary_color, radius } = storeToRefs(store)
+
+  async function saveStyle() {
+    try {
+      await store.updateStyle()
+      toast.success('Style saved')
+    } catch (e) {
+      toast.error('Failed to save style')
+    }
+  }
 </script>

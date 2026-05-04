@@ -3,6 +3,9 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    <ClientOnly>
+      <Sonner position="bottom-right" rich-colors />
+    </ClientOnly>
   </div>
 </template>
 
@@ -44,6 +47,7 @@
     store.getPrimaryColors(),
     store.getSecondaryColors(),
     store.getBorderRadius(),
+    store.getTasks(),
   ])
 </script>
 

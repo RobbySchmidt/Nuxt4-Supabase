@@ -2,7 +2,7 @@
   <div class="relative -mt-12">
     <header
       v-if="user" 
-      class="shadow py-4 sticky top-0 bg-white">
+      class="shadow py-4 sticky top-0 bg-white z-20">
       <div class="container mx-auto px-4">
         <div class="lg:w-8/12 mx-auto flex justify-between items-center">
           <nav>

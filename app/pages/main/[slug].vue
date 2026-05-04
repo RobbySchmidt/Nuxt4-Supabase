@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DetailCard :data="data" :url="'/main'"/>
+    <DetailCard :data="data"/>
   </div>
 </template>
 

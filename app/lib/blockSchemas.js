@@ -30,10 +30,17 @@ export const blockSchemas = {
   },
   card: {
     label: 'Card Grid',
-    fields: [
-      { key: 'slug', type: 'text', label: 'Detail URL slug' },
-    ],
-    initial: { slug: '' },
+    repeater: true,
+    item: {
+      fields: [
+        { key: 'image', type: 'image', label: 'Image' },
+        { key: 'title', type: 'text', label: 'Title' },
+        { key: 'text', type: 'textarea', label: 'Text', hint: 'Shown on the detail page. HTML allowed.' },
+        { key: 'slug', type: 'text', label: 'Detail URL slug', hint: 'Letters, numbers, dashes only' },
+      ],
+      initial: { image: '', title: '', text: '', slug: '' },
+    },
+    initial: [],
   },
   imageSlider: {
     label: 'Image Slider',

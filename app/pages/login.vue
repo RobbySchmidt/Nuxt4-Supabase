@@ -70,7 +70,7 @@
       })
 
       form.resetForm()
-      navigateTo('/main')
+      navigateTo('/')
 
     } catch (e) {}
   })

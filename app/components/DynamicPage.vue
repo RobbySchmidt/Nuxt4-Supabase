@@ -5,7 +5,8 @@
       v-for="block in page.components"
       :key="block.id"
       :is="components[block.type?.type]"
-      :content="block.content" />
+      :content="block.content"
+      :page-slug="page?.slug" />
   </div>
 </template>
 

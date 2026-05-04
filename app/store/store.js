@@ -4,7 +4,6 @@ import { initialContentFor } from "~/lib/blockSchemas";
 
 export const useStore = defineStore('store', {
   state: () => ({
-    images: [],
     pages: [],
     general: [],
     primary_colors: [],
@@ -19,10 +18,6 @@ export const useStore = defineStore('store', {
   }),
 
   getters: {
-    getImageBySlug: (state) => {
-      return (slug) => state.images.find((img) => img.slug === slug)
-    },
-
     getPageBySlug: (state) => {
       return (slug) => state.pages.find((p) => p.slug === slug)
     },
@@ -35,22 +30,6 @@ export const useStore = defineStore('store', {
   },
 
   actions: {
-    async getImages() {
-      try {
-        this.images = await $fetch('/api/data', {
-          method: 'POST',
-          body: {
-            action: 'select',
-            table: 'data',
-            select: '*',
-            order: [{ column: 'sort', ascending: true }],
-          },
-        })
-      } catch (e) {
-        console.error(e)
-      }
-    },
-
     async getPages() {
       try {
         this.pages = await $fetch('/api/data', {
@@ -280,81 +259,6 @@ export const useStore = defineStore('store', {
       ))
 
       await this.getPages()
-    },
-
-    async addDataItem({ title, slug, image, text }) {
-      const nextSort = this.images.length
-        ? Math.max(...this.images.map(d => d.sort ?? 0)) + 1
-        : 1
-
-      const created = await $fetch('/api/data', {
-        method: 'POST',
-        body: {
-          action: 'insert',
-          table: 'data',
-          single: true,
-          values: {
-            title,
-            slug,
-            sort: nextSort,
-            content: { image: image ?? '', text: text ?? '' },
-          },
-        },
-      })
-
-      await this.getImages()
-      return created
-    },
-
-    async updateDataItem(id, { title, slug, image, text }) {
-      const updated = await $fetch('/api/data', {
-        method: 'POST',
-        body: {
-          action: 'update',
-          table: 'data',
-          single: true,
-          values: {
-            title,
-            slug,
-            content: { image: image ?? '', text: text ?? '' },
-          },
-          filters: [{ column: 'id', operator: 'eq', value: id }],
-        },
-      })
-
-      await this.getImages()
-      return updated
-    },
-
-    async deleteDataItem(id) {
-      await $fetch('/api/data', {
-        method: 'POST',
-        body: {
-          action: 'delete',
-          table: 'data',
-          single: true,
-          filters: [{ column: 'id', operator: 'eq', value: id }],
-        },
-      })
-
-      await this.getImages()
-    },
-
-    async reorderData(items) {
-      await Promise.all(items.map(({ id, sort }) =>
-        $fetch('/api/data', {
-          method: 'POST',
-          body: {
-            action: 'update',
-            table: 'data',
-            single: true,
-            values: { sort },
-            filters: [{ column: 'id', operator: 'eq', value: id }],
-          },
-        })
-      ))
-
-      await this.getImages()
     },
 
     async setAsHome(id) {

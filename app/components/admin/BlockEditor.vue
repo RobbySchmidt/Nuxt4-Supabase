@@ -51,9 +51,6 @@
       </div>
     </div>
 
-    <div v-if="block.type?.type === 'card'" class="pt-4 border-t">
-      <DataItemsManager />
-    </div>
   </div>
 </template>
 
@@ -64,7 +61,6 @@ import { useStore } from '~/store/store'
 import { blockSchemas } from '~/lib/blockSchemas'
 import ImageField from './ImageField.vue'
 import RepeaterField from './RepeaterField.vue'
-import DataItemsManager from './DataItemsManager.vue'
 
 const props = defineProps({
   block: { type: Object, required: true },

@@ -41,7 +41,6 @@
 
 
   await Promise.all([
-    store.getImages(),
     store.getPages(),
     store.getGeneral(),
     store.getPrimaryColors(),

@@ -2,19 +2,19 @@
   <div class="container mx-auto px-4">
     <div class="lg:w-8/12 mx-auto grid md:grid-cols-2 gap-8">
       <NuxtLink
-        v-if="images"
-        v-for="data in images"
-        :to="`${content.slug}/${data.slug}`"
+        v-for="item in items"
+        :key="item.slug"
+        :to="`/${pageSlug}/${item.slug}`"
         class="rounded overflow-hidden text-center shadow hover:scale-105 duration-300 ease-in-out">
-        <img 
-          v-if="data.content.image"
-          :src="data.content.image"
-          :alt="data.title"
-          class="block w-full aspect-5/3 object-cover">
-        <h2 
-          class="py-1 text-primary text-lg"
-          v-if="data.title">
-          {{ data.title }}
+        <img
+          v-if="item.image"
+          :src="item.image"
+          :alt="item.title"
+          class="block w-full aspect-5/3 object-cover" />
+        <h2
+          v-if="item.title"
+          class="py-1 text-primary text-lg">
+          {{ item.title }}
         </h2>
       </NuxtLink>
     </div>
@@ -22,15 +22,12 @@
 </template>
 
 <script setup>
-  const props = defineProps({
-    content: Object
-  })
+import { computed } from 'vue'
 
-  import { useStore } from '~/store/store'
+const props = defineProps({
+  content: { type: [Array, Object, null], default: () => [] },
+  pageSlug: { type: String, default: '' },
+})
 
-  const { images } = useStore()
+const items = computed(() => Array.isArray(props.content) ? props.content : [])
 </script>
-
-<style scoped>
-
-</style>
